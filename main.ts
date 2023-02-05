@@ -1,5 +1,9 @@
 import { serve } from 'std/http/server.ts';
 import routes, { Route } from './routes.ts';
+import { createRequire } from "https://deno.land/std/node/module.ts";
+
+const require = createRequire(import.meta.url);
+const stealth = require("./node_modules/stealth");
 
 function handler(request: Request) {
   const routeKeys = Object.keys(routes);
