@@ -1,4 +1,5 @@
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
+import stealth from "https://unpkg.com/stealth"
 const titlePrefix = 'InnoSender';
 
 export async function pageAction(request: Request, match: URLPatternResult) {
