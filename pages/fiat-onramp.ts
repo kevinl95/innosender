@@ -9,7 +9,7 @@ export function pageContent() {
 
   return {
     htmlContent,
-    titlePrefix: 'Web Component',
+    titlePrefix: 'Fiat-Onramp',
   } as PageContentResult;
 }
 
@@ -31,7 +31,7 @@ function generateHtmlContent() {
       </button>
     </section>
     
-    <script src="/public/ts/web-component.ts" type="module" defer></script>
+    <script src="/public/ts/fiat-onramp.ts" type="module" defer></script>
   `;
 
   return htmlContent;
