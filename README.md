@@ -12,7 +12,6 @@ There are no other dependencies. **Deno**!
 ```sh
 $ make start
 $ make format
-$ make test
 ```
 
 ## Structure

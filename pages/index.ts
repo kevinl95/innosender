@@ -1,4 +1,4 @@
-import { fromString, genPaymentAddress, stealth, checkPaymentPubKeyHash} from "npm:stealth";
+import { fromString, genPaymentAddress, stealth, checkPaymentPubKeyHash} from "npm:stealth@0.4.0;
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
 
 const titlePrefix = 'InnoSender';
