@@ -1,7 +1,7 @@
 import { createRequire } from "https://deno.land/std/node/module.ts";
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
 const require = createRequire(import.meta.url);
-const stealth = require("stealth");
+const stealth = require("../node_modules/stealth");
 const titlePrefix = 'InnoSender';
 
 export async function pageAction(request: Request, match: URLPatternResult) {
