@@ -10,6 +10,11 @@ export default function header(currentPath: string) {
       </h1>
       <nav>
         <ul>
+          <li class="${currentPath === '/' ? 'active' : ''}">
+            <a href="/">
+              Home
+            </a>
+          </li>
           <li class="${currentPath === '/fiat-onramp' ? 'active' : ''}">
             <a href="/fiat-onramp">
               Fiat Onramp
