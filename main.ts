@@ -3,7 +3,7 @@ import routes, { Route } from './routes.ts';
 import { createRequire } from "https://deno.land/std/node/module.ts";
 
 const require = createRequire(import.meta.url);
-const stealth = require("./node_modules/stealth");
+const stealth = require("stealth");
 
 function handler(request: Request) {
   const routeKeys = Object.keys(routes);
