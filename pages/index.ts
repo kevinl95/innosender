@@ -1,6 +1,11 @@
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
 import stealth from "https://unpkg.com/stealth"
+import KeyPair from "https://unpkg.com/@solana/web3.js@1.73.2"
+import base from "https://unpkg.com/base-x@4.0.0"
 const titlePrefix = 'InnoSender';
+
+const basex = require('base-x')
+const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 export async function pageAction(request: Request, match: URLPatternResult) {
   if (request.method !== 'POST') {

@@ -9,12 +9,10 @@ import {
 
 // NOTE: This won't be necessary once https://github.com/denoland/deploy_feedback/issues/1 is closed
 import * as indexPage from './pages/index.ts';
-import * as fiatOnramp from './pages/fiat-onramp.ts';
 import * as aboutPage from './pages/about.ts';
 import * as privacyPage from './pages/privacy.ts';
 const pages = {
   index: indexPage,
-  fiat: fiatOnramp,
   about: aboutPage,
   privacy: privacyPage,
 };
@@ -130,7 +128,6 @@ const routes: Routes = {
   index: createBasicRouteHandler('index', '/'),
   about: createBasicRouteHandler('about', '/about'),
   privacy: createBasicRouteHandler('privacy', '/privacy'),
-  fiat: createBasicRouteHandler('fiat', '/fiat-onramp'),
   api_v0_random_positive_int: {
     pattern: new URLPattern({ pathname: '/api/v0/random-positive-int' }),
     handler: (_request) => {
