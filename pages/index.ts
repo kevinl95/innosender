@@ -1,6 +1,7 @@
-import { fromString, genPaymentAddress, stealth, checkPaymentPubKeyHash} from "npm:stealth@0.4.0;
+import { createRequire } from "https://deno.land/std/node/module.ts";
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
-
+const require = createRequire(import.meta.url);
+const stealth = require("stealth");
 const titlePrefix = 'InnoSender';
 
 export async function pageAction(request: Request, match: URLPatternResult) {
