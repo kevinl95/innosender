@@ -1,10 +1,9 @@
 import { basicLayoutResponse, escapeHtml, html, PageContentResult } from '../lib/utils.ts';
-import stealth from "https://unpkg.com/stealth"
-import KeyPair from "https://unpkg.com/@solana/web3.js@1.73.2"
-import base from "https://unpkg.com/base-x@4.0.0"
+import * as Stealth from "https://esm.sh/stealth@0.4.0"
+import * as solanaWeb3 from "https://esm.sh/@solana/web3.js@1.73.2"
+import base from "https://esm.sh/base-x@4.0.0"
 const titlePrefix = 'InnoSender';
 
-const basex = require('base-x')
 const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 export async function pageAction(request: Request, match: URLPatternResult) {
@@ -68,7 +67,7 @@ function generateHtmlContent(notificationHtml = '', randomValue = '') {
   const htmlContent = html`
     <section class="main-section">
       <h1 class="main-title">
-        InnoSender is a service that lets you transfer Solana NFTs (and in the future currency and tokens) without making it public that you sent them! Further, it uses the unique features of Solana to allow you to transfer to a wallet that has no SOL or other currency inside- your wallet you are transfering from will pay the gas fee on the behalf of the receiving wallet. This solves a major issue with using stealth addresses to bootstrap a new, anonymous wallet.
+        InnoSender is a service that lets you mint Solana NFTs for an anonymous wallet (and in the future transfer currency and tokens) without making it public that you made them! Further, it uses the unique features of Solana to allow you to transfer the new asset to a wallet that has no SOL or other currency inside- your wallet you are transfering from will pay the gas fee on the behalf of the receiving wallet. This solves a major issue with using stealth addresses to bootstrap a new, anonymous wallet.
       </h1>
       <p>We recommend you visit this page via Tor. This page has been optimized for Tor users using CloudFlare.</p>
       <p><a href="https://blog.cloudflare.com/cloudflare-onion-service/">You can find out more about using CloudFlare's onion service here.</p>
@@ -78,6 +77,12 @@ function generateHtmlContent(notificationHtml = '', randomValue = '') {
         There are two steps to securely transfer your NFT asset. The receiver, be it you or someone else, must first complete this section. If you are trying to send an asset, scroll to the next section.
       </p>
       <h1>Receiver Setup</h1>
+      <p>When this button is pressed InnoSender will generate two sets of keypairs that will be downloaded to your machine and can be used to create your new anonymous wallet. Keep them safe! You will also get an address you should give to the person sending you an NFT, preferably using an encrypted app such as Signal or by handing them the address in person.</p>
+      <p>You will use the "Scan" key to check if the sender has minted their NFT and made it available to you.</p>
+      <button is="app-button">
+        Click me to get your stealth address and keys!
+      </button>
+      <h1>Sender Setup</h1>
       <form action="/form" method="POST">
         <fieldset>
           <label for="random-value">Random Value</label>
@@ -87,8 +92,8 @@ function generateHtmlContent(notificationHtml = '', randomValue = '') {
         </fieldset>
         <button type="submit">Submit</button>
       </form>
-      <h1>Sender Setup</h1>
     </section>
+    <script src="/public/ts/web-component.ts" type="module" defer></script>
   `;
 
   return htmlContent;
