@@ -7,6 +7,7 @@ import {
 } from './lib/utils.ts';
 import Stealth from "https://esm.sh/stealth@0.4.0"
 import * as solanaWeb3 from "https://esm.sh/@solana/web3.js@1.73.2"
+import bs58 from "https://esm.sh/bs58@5.0.0"
 // NOTE: This won't be necessary once https://github.com/denoland/deploy_feedback/issues/1 is closed
 import * as indexPage from './pages/index.ts';
 import * as aboutPage from './pages/about.ts';
@@ -132,19 +133,17 @@ const routes: Routes = {
     pattern: new URLPattern({ pathname: '/api/v0/handle-receiver' }),
     handler: (_request) => {
       var payloadWallet = solanaWeb3.Keypair.generate();
-      console.log(payloadWallet);
-      console.log(payloadWallet.secretKey);
-      console.log(payloadWallet.publicKey.toBytes());
       var scanWallet = solanaWeb3.Keypair.generate();
       var stealth = new Stealth({
-        payloadPrivKey: payloadWallet.secretKey,
+        payloadPrivKey: payloadWallet.secretKey.slice(0, 32),
         payloadPubKey: payloadWallet.publicKey.toBuffer(),
-        scanPrivKey: scanWallet.secretKey,
+        scanPrivKey: scanWallet.secretKey.slice(0, 32),
         scanPubKey: scanWallet.publicKey.toBuffer()
       });
       var addr = stealth.toString();
-
-      return new Response(JSON.stringify({ "addr": addr, "payloadPriv": payloadWallet.secretKey, "payloadPub": payloadWallet.publicKey, "scanPriv": scanWallet.secretKey, "scanPub": scanWallet.publicKey }), {
+      var friendlyPayPriv = bs58.encode(payloadWallet.secretKey);
+      var friendlyScanPriv = bs58.encode(scanWallet.secretKey)
+      return new Response(JSON.stringify({ "addr": addr, "payloadPriv": friendlyPayPriv, "payloadPub": payloadWallet.publicKey, "scanPriv": friendlyScanPriv, "scanPub": scanWallet.publicKey }), {
         headers: {
           'content-type': 'application/json; charset=utf-8',
         },
